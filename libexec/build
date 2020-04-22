@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#
+# This script runs the command whose output is to be monitored.
+
+set -euo pipefail
+
+# This program is lives in a subdirectory at relative path server/bin/ relative
+# to the directory where the command should run.  For example:
+#
+#      cargo init myproject
+#      cd myproject
+#      git clone git@github.com:jeffs/terminal-output-server server
+#      ./server/bin/update
+#
+cd "$(dirname "$0")"
+cd ../..
+
+cargo --color=always --quiet run 0 `seq 31`

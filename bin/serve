@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source ~/.nvm/nvm.sh
+
+# Change directory to the parent of the 'bin' (where this script lives).
+cd "$(dirname "$0")"
+cd ..
+npm install
+
+cd srv
+../node_modules/reload/bin/reload &
+../node_modules/http-server/bin/http-server --port 8000
+wait
