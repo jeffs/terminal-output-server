@@ -9,6 +9,8 @@ cd "$(dirname "$0")"
 cd ..
 npm install
 
+mkdir -p var
+
 cd srv
 ../node_modules/reload/bin/reload &
 ../node_modules/http-server/bin/http-server --port 8000
