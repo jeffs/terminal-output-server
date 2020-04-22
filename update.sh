@@ -22,6 +22,7 @@ td, th {
 EOF
 
 if [ $status = 0 ] && grep -q '<.*>' cargo.out; then
+    sed -i 's/&/&amp;/ s/</&lt;/; s/>/&gt;' cargo.out
     ./node_modules/ansi-to-html/bin/ansi-to-html cargo.out >> temp.html
 else
     cat >>temp.html <<EOF
