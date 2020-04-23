@@ -1,0 +1,22 @@
+body {
+    background-color: #111;
+    color: cyan;
+    font-family: Georgia, serif;
+}
+code {
+    font-family: Lucida Console, monospace;
+}
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+td, th {
+    border: 0.5px solid darkcyan;
+    padding: 0.5rem;
+}
+
+thead { background: black; color: #F39F41; }
+tbody { text-align: right; }
+
+tbody tr:nth-child(even) { background: #222; }
+tbody tr:nth-child(odd)  { background: #333; }

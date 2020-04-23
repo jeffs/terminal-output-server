@@ -9,28 +9,19 @@ import Convert from 'ansi-to-html';
 const libPath = path.dirname(new URL(import.meta.url).pathname);
 const varPath = path.join(libPath, '..', 'var');
 const srvPath = path.join(libPath, '..', 'srv');
+const etcPath = path.join(libPath, '..', 'etc');
 
 const rawPath = path.join(varPath, 'output.raw');
 const tmpPath = path.join(varPath, 'output.html');
 const outPath = path.join(srvPath, 'output.html');
 
 const exePath = path.join(libPath, 'build')
+const cssPath = path.join(etcPath, 'style.css')
 
-const htmlPreamble = `<meta charset="utf-8">
-<style>
-body {
-    background-color: #111;
-    color: cyan;
+async function preamble() {
+    const style = await fs.promises.readFile(cssPath, 'utf-8');
+    return `<meta charset="utf-8"><style>${style}</style>`;
 }
-table {
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-td, th {
-    border: 1px solid cyan;
-    padding: 1rem;
-}
-</style>`;
 
 async function transformRaw(errorCode) {
     const convert = new Convert({
@@ -39,7 +30,7 @@ async function transformRaw(errorCode) {
         escapeXML: true,
     });
     const rawText = await fs.promises.readFile(rawPath, 'utf-8');
-    const html = htmlPreamble + (
+    const html = await preamble() + (
         errorCode === 0 && rawText.search('<.*>') !== -1
         ? rawText
         : `<pre>${convert.toHtml(rawText)}</pre>`
