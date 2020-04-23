@@ -1,9 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S node --experimental-modules --no-warnings
 
-set -euo pipefail
+import update from '../lib/update.js'
 
-cd "$(dirname "$0")"
-bin="$PWD"
-libexec="$PWD/../libexec"
-
-"$libexec"/update.js
+update();
