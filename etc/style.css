@@ -20,3 +20,16 @@ tbody { text-align: right; }
 
 tbody tr:nth-child(even) { background: #222; }
 tbody tr:nth-child(odd)  { background: #333; }
+
+.error-box {
+  border: 1px solid red;
+  background-color: black;
+  color: pink;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.error-box p {
+  font-size: small;
+  font-style: italic;
+}
