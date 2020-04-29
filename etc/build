@@ -15,4 +15,8 @@ set -euo pipefail
 cd "$(dirname "$0")"
 cd ../..
 
-cargo --color=always --quiet run 0 `seq 31`
+if [ -e src/main.rs ] || find src | grep -q 'bin/.*\.rs'; then
+    cargo --color=always --quiet run 0 `seq 31`
+else
+    cargo --color=always --quiet build
+fi
