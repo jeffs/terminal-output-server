@@ -11,6 +11,19 @@ npm install
 
 mkdir -p var
 
+if [ ! -f srv/output.html ]; then
+cat > srv/output.html <<EOF
+<style>
+body {
+    background-color: #111;
+    color: cyan;
+    font-family: Georgia, serif;
+}
+</style>
+<p>Run me.</p>
+EOF
+fi
+
 cd srv
 ../node_modules/reload/bin/reload &
 ../node_modules/http-server/bin/http-server --port 8000
