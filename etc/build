@@ -16,7 +16,7 @@ cd "$(dirname "$0")"
 cd ../..
 
 if [ -e src/main.rs ] || find src | grep -q 'bin/.*\.rs'; then
-    cargo --color=always --quiet run 0 `seq 31`
+    cargo --color=always --quiet run 0 `seq 7`
 else
     cargo --color=always --quiet build
 fi
